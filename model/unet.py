@@ -26,7 +26,7 @@ class ExtractPath(nn.Module):
         return self.conv2(self.conv1(self.cat([previousX, self.upConv(x)])))
     
 class UNet(nn.Module):
-    def __init__(self, pathBlockNum, classNum=10):
+    def __init__(self, pathBlockNum):
         super().__init__()
         self.contractPaths = nn.ModuleList()
         self.extractPaths = nn.ModuleList()
@@ -45,8 +45,8 @@ class UNet(nn.Module):
             self.extractPaths.append(ExtractPath(preChannelNum, preChannelNum // 2))
             preChannelNum //= 2
 
-        self.fullyConv = Conv(preChannelNum, classNum, 3, hasActivation=False)
-
+        self.fullyConv = Conv(preChannelNum, 1, 3, hasActivation=nn.Sigmoid())
+    
     def forward(self, x):
         featureMaps = list()
         for path in self.contractPaths:
@@ -57,3 +57,7 @@ class UNet(nn.Module):
             x = path(previousX, x)
         
         return self.fullyConv(x)
+        
+        
+        
+            
