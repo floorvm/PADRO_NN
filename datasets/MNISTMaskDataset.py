@@ -4,8 +4,7 @@ from PIL import Image
 import torch
 import numpy as np
 from scipy.signal import convolve2d
-
-
+import sys
 
 
 def convolve(H, x):
@@ -54,7 +53,9 @@ class MNISTBlurredDataset(MNIST):
 
         img_blurred = torch.tensor(convolve(self.H, img))
         print(f"Post-blurring Shape of image before unsqueeze: {img_blurred.shape if hasattr(img_blurred, 'shape') else 'No shape attribute'}")
+        sys.stdout.flush()
         img_blurred = img_blurred.unsqueeze(0)
         print(f"Post-blurring Shape of image after unsqueeze: {img_blurred.shape if hasattr(img_blurred, 'shape') else 'No shape attribute'}")
+        sys.stdout.flush()
 
         return img, img_blurred
