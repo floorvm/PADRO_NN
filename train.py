@@ -70,7 +70,7 @@ transform = transforms.Compose([transforms.Resize(imgSize), transforms.ToTensor(
 trainDataset = MNISTBlurredDataset(H, path, train=True, download=True, transform=transform)
 trainLoader = DataLoader(trainDataset, batch_size=batchSize, shuffle=True, drop_last=True)
 trainLoaderSize = len(trainLoader)
-# plot_images(trainLoader, num_images=5)
+plot_images(trainLoader, num_images=2)
 
 testDataset = MNISTBlurredDataset(H, path, train=False, download=True, transform=transform)
 testLoader = DataLoader(testDataset, batch_size=batchSize, shuffle=True, drop_last=True)
