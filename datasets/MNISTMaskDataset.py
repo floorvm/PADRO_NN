@@ -40,8 +40,8 @@ class MNISTBlurredDataset(MNIST):
 
     def __getitem__(self, index: int) -> tuple[Any, Any]:
         img, _ = self.data[index]
-        print(f"Original Type of image: {type(img)}")
-        print(f"Original Shape of image: {img.shape if hasattr(img, 'shape') else 'No shape attribute'}")
+        # print(f"Original Type of image: {type(img)}")
+        # print(f"Original Shape of image: {img.shape if hasattr(img, 'shape') else 'No shape attribute'}")
 
         img = (img.numpy().squeeze() * 255).astype(np.uint8)
         img = Image.fromarray(img, mode="L")
@@ -49,12 +49,12 @@ class MNISTBlurredDataset(MNIST):
         if self.transform is not None:
             img = self.transform(img)
 
-        print(f"Post-tranform Type of image: {type(img)}")
-        print(f"Post-tranform Shape of image: {img.shape if hasattr(img, 'shape') else 'No shape attribute'}")
+        # print(f"Post-tranform Type of image: {type(img)}")
+        # print(f"Post-tranform Shape of image: {img.shape if hasattr(img, 'shape') else 'No shape attribute'}")
 
-        img_blurred = torch.tensor(convolve(self.H, img)).unsqueeze(0)
-
-        print(f"Post-blurring Type of image: {type(img_blurred)}")
-        print(f"Post-blurring Shape of image: {img_blurred.shape if hasattr(img_blurred, 'shape') else 'No shape attribute'}")
+        img_blurred = torch.tensor(convolve(self.H, img))
+        print(f"Post-blurring Shape of image before unsqueeze: {img_blurred.shape if hasattr(img_blurred, 'shape') else 'No shape attribute'}")
+        img_blurred = img_blurred.unsqueeze(0)
+        print(f"Post-blurring Shape of image after unsqueeze: {img_blurred.shape if hasattr(img_blurred, 'shape') else 'No shape attribute'}")
 
         return img, img_blurred
