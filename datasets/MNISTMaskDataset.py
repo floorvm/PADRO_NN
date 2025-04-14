@@ -51,6 +51,5 @@ class MNISTBlurredDataset(MNIST):
         # print(f"Post-tranform Shape of image: {img.shape if hasattr(img, 'shape') else 'No shape attribute'}")
 
         img_blurred = torch.tensor(convolve(self.H, img)).unsqueeze(0)
-        print(f"Post-blurring Shape of image: {img_blurred.shape if hasattr(img_blurred, 'shape') else 'No shape attribute'}")
 
         return img, img_blurred
