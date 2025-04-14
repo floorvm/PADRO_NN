@@ -8,7 +8,7 @@ import numpy as np
 from utils.util import createIncrementalPath
 from datasets.MNISTMaskDataset import MNISTBlurredDataset, MNISTMaskDataset
 from model.unet import UNet
-from utils.plot import saveImagesForMnistSegment, generateColorByClass
+from utils.plot2 import saveImagesForMnistSegment, generateColorByClass
 import matplotlib.pyplot as plt
 
 def gaussian_kernel(size, sigma):

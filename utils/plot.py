@@ -48,7 +48,7 @@ def getDrawingTitleImage(title: str, image: np.ndarray, textColor: tuple[int, in
     return np.array(pil_image)
 
 
-def saveImagesForMnistSegment(images, labelsByClass, numbers, colorByClass, threshold, savePath,
+def saveImagesForMnistSegment(images, labelsByClass, colorByClass, threshold, savePath,
                               fileName='segmentImage.jpg'):
     imageNum = len(images)
     if isSquareRootInteger(imageNum):
