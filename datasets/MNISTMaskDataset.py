@@ -52,4 +52,4 @@ class MNISTBlurredDataset(MNIST):
 
         img_blurred = torch.tensor(convolve(self.H, img)).unsqueeze(0)
 
-        return img, img_blurred
+        return img_blurred, img
